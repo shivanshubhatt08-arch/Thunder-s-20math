@@ -193,17 +193,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-12">
+      <footer className="bg-slate-900 text-blue-300 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                  <span className="text-white font-bold">C</span>
+                  <span className="text-white font-bold">⚡</span>
                 </div>
-                <span className="font-bold text-lg text-white">CalcMath</span>
+                <span className="font-bold text-lg text-blue-400">Thunder's Math</span>
               </div>
-              <p>Making calculations simple and beautiful.</p>
+              <p className="text-blue-300">Making calculations simple and beautiful.</p>
             </div>
             <div>
               <h4 className="font-semibold text-white mb-3">Features</h4>
