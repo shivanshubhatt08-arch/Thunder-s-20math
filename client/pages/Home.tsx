@@ -77,12 +77,12 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
                 Your Perfect
               </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">
-                Calculator Companion
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-600">
+                Math Companion
               </span>
             </h1>
 
