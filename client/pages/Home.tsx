@@ -158,13 +158,13 @@ export default function Home() {
                 key={index}
                 className="p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 hover:border-slate-300 transition-all duration-200 hover:shadow-md"
               >
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-3">
+                <div className="text-5xl font-bold text-blue-600 mb-3">
                   {unit.symbol}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-blue-700 mb-2">
                   {unit.name}
                 </h3>
-                <p className="text-slate-600 font-mono">
+                <p className="text-blue-600 font-mono">
                   {unit.value}
                 </p>
               </div>
