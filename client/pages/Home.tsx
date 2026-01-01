@@ -110,10 +110,10 @@ export default function Home() {
       <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Why Choose CalcMath?
+            <h2 className="text-4xl font-bold text-blue-600 mb-4">
+              Why Choose Thunder's Math?
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-lg text-blue-700">
               Powerful features wrapped in a simple, elegant design
             </p>
           </div>
