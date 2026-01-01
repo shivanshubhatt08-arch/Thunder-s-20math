@@ -1,5 +1,7 @@
-import Calculator from "@/components/Calculator";
+import Home from "./Home";
 
-export default function Index() {
-  return <Calculator />;
+export default Index;
+
+function Index() {
+  return <Home />;
 }
