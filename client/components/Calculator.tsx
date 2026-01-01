@@ -96,7 +96,7 @@ export default function Calculator() {
             to="/"
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
           >
-            CalcMath
+            ⚡ Thunder's Math
           </Link>
           <Link
             to="/"
