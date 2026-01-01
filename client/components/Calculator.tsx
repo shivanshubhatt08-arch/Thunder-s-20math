@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Delete, RotateCcw } from "lucide-react";
+import { Delete, RotatCw } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Calculator() {
   const [display, setDisplay] = useState("0");
@@ -95,157 +96,187 @@ export default function Calculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm">
-        <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-6 space-y-4">
-          {/* Display */}
-          <div className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl rounded-2xl p-6 text-right border border-white/20">
-            <div className="text-white/60 text-sm h-6 mb-2">
-              {operation && previousValue !== null
-                ? `${previousValue} ${operation}`
-                : ""}
-            </div>
-            <div className="text-white text-5xl font-light tracking-tight break-words">
-              {display}
-            </div>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link
+            to="/"
+            className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+          >
+            CalcMath
+          </Link>
+          <Link
+            to="/"
+            className="text-sm px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+          >
+            Home
+          </Link>
+        </div>
+      </div>
 
-          {/* Button Grid */}
-          <div className="grid grid-cols-4 gap-3">
-            {/* Row 1: Clear, Backspace, Percentage, Divide */}
-            <button
-              onClick={handleClear}
-              className="col-span-2 bg-gradient-to-br from-red-500/80 to-red-600/80 hover:from-red-500 hover:to-red-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-red-400/30"
-            >
-              <div className="flex items-center justify-center gap-2">
-                <RotateCcw size={18} />
-                Clear
+      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] p-4">
+        <div className="w-full max-w-sm">
+          {/* Calculator Card */}
+          <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+            {/* Display Section */}
+            <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-6">
+              <div className="text-right space-y-2">
+                <div className="text-slate-400 text-sm h-6">
+                  {operation && previousValue !== null
+                    ? `${previousValue} ${operation}`
+                    : ""}
+                </div>
+                <div className="text-white text-6xl font-light tracking-tight break-words">
+                  {display}
+                </div>
               </div>
-            </button>
-            <button
-              onClick={handleBackspace}
-              className="bg-gradient-to-br from-orange-500/80 to-orange-600/80 hover:from-orange-500 hover:to-orange-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-orange-400/30"
-            >
-              <Delete size={20} />
-            </button>
-            <button
-              onClick={handlePercentage}
-              className="bg-gradient-to-br from-orange-500/80 to-orange-600/80 hover:from-orange-500 hover:to-orange-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-orange-400/30"
-            >
-              %
-            </button>
+            </div>
 
-            {/* Row 2: 7, 8, 9, ÷ */}
-            <button
-              onClick={() => handleNumberClick("7")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              7
-            </button>
-            <button
-              onClick={() => handleNumberClick("8")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              8
-            </button>
-            <button
-              onClick={() => handleNumberClick("9")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              9
-            </button>
-            <button
-              onClick={() => handleOperation("÷")}
-              className="bg-gradient-to-br from-blue-500/80 to-blue-600/80 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-blue-400/30"
-            >
-              ÷
-            </button>
+            {/* Button Grid */}
+            <div className="p-6 space-y-3">
+              {/* Row 1: AC, DEL, %, ÷ */}
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={handleClear}
+                  className="bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  AC
+                </button>
+                <button
+                  onClick={handleBackspace}
+                  className="bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center"
+                >
+                  <Delete size={20} />
+                </button>
+                <button
+                  onClick={handlePercentage}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  %
+                </button>
+                <button
+                  onClick={() => handleOperation("÷")}
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  ÷
+                </button>
+              </div>
 
-            {/* Row 3: 4, 5, 6, × */}
-            <button
-              onClick={() => handleNumberClick("4")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              4
-            </button>
-            <button
-              onClick={() => handleNumberClick("5")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              5
-            </button>
-            <button
-              onClick={() => handleNumberClick("6")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              6
-            </button>
-            <button
-              onClick={() => handleOperation("×")}
-              className="bg-gradient-to-br from-blue-500/80 to-blue-600/80 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-blue-400/30"
-            >
-              ×
-            </button>
+              {/* Row 2: 7, 8, 9, × */}
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={() => handleNumberClick("7")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  7
+                </button>
+                <button
+                  onClick={() => handleNumberClick("8")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  8
+                </button>
+                <button
+                  onClick={() => handleNumberClick("9")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  9
+                </button>
+                <button
+                  onClick={() => handleOperation("×")}
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  ×
+                </button>
+              </div>
 
-            {/* Row 4: 1, 2, 3, − */}
-            <button
-              onClick={() => handleNumberClick("1")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              1
-            </button>
-            <button
-              onClick={() => handleNumberClick("2")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              2
-            </button>
-            <button
-              onClick={() => handleNumberClick("3")}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              3
-            </button>
-            <button
-              onClick={() => handleOperation("−")}
-              className="bg-gradient-to-br from-blue-500/80 to-blue-600/80 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-blue-400/30"
-            >
-              −
-            </button>
+              {/* Row 3: 4, 5, 6, − */}
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={() => handleNumberClick("4")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  4
+                </button>
+                <button
+                  onClick={() => handleNumberClick("5")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  5
+                </button>
+                <button
+                  onClick={() => handleNumberClick("6")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  6
+                </button>
+                <button
+                  onClick={() => handleOperation("−")}
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  −
+                </button>
+              </div>
 
-            {/* Row 5: 0, +/-, ., + */}
-            <button
-              onClick={() => handleNumberClick("0")}
-              className="col-span-2 bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              0
-            </button>
-            <button
-              onClick={handlePlusMinus}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              +/−
-            </button>
-            <button
-              onClick={handleDecimal}
-              className="bg-gradient-to-br from-white/20 to-white/10 hover:from-white/30 hover:to-white/15 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-white/20"
-            >
-              .
-            </button>
+              {/* Row 4: 1, 2, 3, + */}
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={() => handleNumberClick("1")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  1
+                </button>
+                <button
+                  onClick={() => handleNumberClick("2")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  2
+                </button>
+                <button
+                  onClick={() => handleNumberClick("3")}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  3
+                </button>
+                <button
+                  onClick={() => handleOperation("+")}
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                  +
+                </button>
+              </div>
 
-            {/* Row 6: + and = */}
-            <button
-              onClick={() => handleOperation("+")}
-              className="bg-gradient-to-br from-blue-500/80 to-blue-600/80 hover:from-blue-500 hover:to-blue-600 text-white font-semibold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-blue-400/30"
-            >
-              +
-            </button>
-            <button
-              onClick={handleEquals}
-              className="col-span-3 bg-gradient-to-br from-green-500/80 to-emerald-600/80 hover:from-green-500 hover:to-emerald-600 text-white font-bold py-4 rounded-xl transition-all duration-200 active:scale-95 backdrop-blur-sm border border-green-400/30 text-lg"
-            >
-              =
-            </button>
+              {/* Row 5: 0, +/-, ., = */}
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={() => handleNumberClick("0")}
+                  className="col-span-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  0
+                </button>
+                <button
+                  onClick={handlePlusMinus}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-lg py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  +/−
+                </button>
+                <button
+                  onClick={handleDecimal}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                >
+                  .
+                </button>
+              </div>
+
+              {/* Row 6: = Button (Full Width) */}
+              <button
+                onClick={handleEquals}
+                className="w-full bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-2xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+              >
+                =
+              </button>
+            </div>
           </div>
         </div>
       </div>
