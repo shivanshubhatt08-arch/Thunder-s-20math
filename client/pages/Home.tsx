@@ -129,10 +129,10 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4">
                     <Icon className="text-white" size={24} />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                  <h3 className="text-lg font-semibold text-blue-700 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-slate-600">{feature.description}</p>
+                  <p className="text-blue-600">{feature.description}</p>
                 </div>
               );
             })}
