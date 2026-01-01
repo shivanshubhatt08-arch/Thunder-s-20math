@@ -223,7 +223,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-slate-800 pt-8 text-center">
-            <p>&copy; 2024 CalcMath. All rights reserved.</p>
+            <p className="text-blue-300">&copy; 2024 Thunder's Math. All rights reserved.</p>
           </div>
         </div>
       </footer>
