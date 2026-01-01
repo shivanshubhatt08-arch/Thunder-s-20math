@@ -256,7 +256,7 @@ export default function UnitConverter() {
 
         {/* Quick Conversion Examples */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">
+          <h3 className="text-2xl font-bold text-blue-600 mb-6">
             Quick Conversions
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
