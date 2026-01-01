@@ -206,19 +206,19 @@ export default function Home() {
               <p className="text-blue-300">Making calculations simple and beautiful.</p>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-3">Features</h4>
+              <h4 className="font-semibold text-blue-400 mb-3">Features</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition">Basic Calc</a></li>
-                <li><a href="#" className="hover:text-white transition">Fast Results</a></li>
-                <li><a href="#" className="hover:text-white transition">Accurate</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Basic Calc</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Fast Results</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Accurate</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-3">Contact</h4>
+              <h4 className="font-semibold text-blue-400 mb-3">Contact</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition">Support</a></li>
-                <li><a href="#" className="hover:text-white transition">Feedback</a></li>
-                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Support</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Feedback</a></li>
+                <li><a href="#" className="text-blue-300 hover:text-blue-200 transition">Privacy</a></li>
               </ul>
             </div>
           </div>
