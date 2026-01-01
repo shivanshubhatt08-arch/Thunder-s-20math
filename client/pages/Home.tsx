@@ -174,13 +174,13 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Start Calculating Now
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Experience the simplicity and power of CalcMath. Perfect for students, professionals, and everyone in between.
+            Experience the simplicity and power of Thunder's Math. Perfect for students, professionals, and everyone in between.
           </p>
           <Link
             to="/calculator"
