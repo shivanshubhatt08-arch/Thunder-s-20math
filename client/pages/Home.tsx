@@ -86,7 +86,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-700 max-w-2xl mx-auto">
               Fast, accurate, and beautiful calculations at your fingertips. Designed for simplicity and efficiency.
             </p>
 
