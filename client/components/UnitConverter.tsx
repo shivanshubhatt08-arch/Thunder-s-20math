@@ -150,7 +150,7 @@ export default function UnitConverter() {
           <div className="p-8 space-y-8">
             {/* Category Selection */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
+              <label className="block text-sm font-semibold text-blue-700 mb-3">
                 Select Category
               </label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
