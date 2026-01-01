@@ -137,10 +137,10 @@ export default function UnitConverter() {
       <div className="max-w-2xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 mb-2">
+          <h2 className="text-4xl font-bold text-blue-600 mb-2">
             Unit Converter
           </h2>
-          <p className="text-slate-600">
+          <p className="text-blue-700">
             Convert between different units easily
           </p>
         </div>
