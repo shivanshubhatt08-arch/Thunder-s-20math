@@ -169,7 +169,7 @@ export default function UnitConverter() {
 
             {/* Input Value */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
+              <label className="block text-sm font-semibold text-blue-700 mb-3">
                 Enter Value
               </label>
               <input
