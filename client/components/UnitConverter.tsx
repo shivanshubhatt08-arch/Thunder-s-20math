@@ -236,8 +236,8 @@ export default function UnitConverter() {
             </div>
 
             {/* Conversion Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-900">
+            <div className="bg-blue-50 border border-blue-300 rounded-lg p-4">
+              <p className="text-sm text-blue-800">
                 <span className="font-semibold">
                   1 {currentCategory.units[fromUnit]?.symbol}
                 </span>{" "}
