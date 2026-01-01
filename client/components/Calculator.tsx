@@ -1,98 +1,90 @@
 import { useState } from "react";
-import { Delete, RotatCw } from "lucide-react";
+import { Delete, RotatCcw } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Calculator() {
-  const [display, setDisplay] = useState("0");
-  const [previousValue, setPreviousValue] = useState<number | null>(null);
-  const [operation, setOperation] = useState<string | null>(null);
-  const [waitingForNewValue, setWaitingForNewValue] = useState(false);
+  const [expression, setExpression] = useState("");
+  const [result, setResult] = useState<string | null>(null);
 
   const handleNumberClick = (num: string) => {
-    if (waitingForNewValue) {
-      setDisplay(num);
-      setWaitingForNewValue(false);
-    } else {
-      setDisplay(display === "0" ? num : display + num);
-    }
+    setExpression(expression + num);
   };
 
   const handleDecimal = () => {
-    if (waitingForNewValue) {
-      setDisplay("0.");
-      setWaitingForNewValue(false);
-    } else if (!display.includes(".")) {
-      setDisplay(display + ".");
+    const lastToken = expression.split(/[\+\−\×\÷]/).pop() || "";
+    if (!lastToken.includes(".")) {
+      setExpression(expression + ".");
     }
   };
 
-  const handleOperation = (nextOperation: string) => {
-    const currentValue = parseFloat(display);
-
-    if (previousValue === null) {
-      setPreviousValue(currentValue);
-    } else if (operation) {
-      const result = calculate(previousValue, currentValue, operation);
-      setDisplay(String(result));
-      setPreviousValue(result);
+  const handleOperation = (op: string) => {
+    if (expression && !expression.endsWith(" ")) {
+      setExpression(expression + " " + op + " ");
+      setResult(null);
     }
-
-    setOperation(nextOperation);
-    setWaitingForNewValue(true);
   };
 
-  const calculate = (prev: number, current: number, op: string): number => {
-    switch (op) {
-      case "+":
-        return prev + current;
-      case "−":
-        return prev - current;
-      case "×":
-        return prev * current;
-      case "÷":
-        return prev / current;
-      case "%":
-        return prev % current;
-      default:
-        return current;
+  const calculate = (): string => {
+    try {
+      let calcExpression = expression
+        .replace(/−/g, "-")
+        .replace(/×/g, "*")
+        .replace(/÷/g, "/");
+
+      const evalResult = eval(calcExpression);
+      return String(evalResult);
+    } catch {
+      return "Error";
     }
   };
 
   const handleEquals = () => {
-    const currentValue = parseFloat(display);
-
-    if (previousValue !== null && operation) {
-      const result = calculate(previousValue, currentValue, operation);
-      setDisplay(String(result));
-      setPreviousValue(null);
-      setOperation(null);
-      setWaitingForNewValue(true);
+    if (expression) {
+      const calcResult = calculate();
+      setResult(calcResult);
     }
   };
 
   const handleClear = () => {
-    setDisplay("0");
-    setPreviousValue(null);
-    setOperation(null);
-    setWaitingForNewValue(false);
+    setExpression("");
+    setResult(null);
   };
 
   const handleBackspace = () => {
-    if (display.length === 1) {
-      setDisplay("0");
-    } else {
-      setDisplay(display.slice(0, -1));
-    }
+    setExpression(expression.slice(0, -1));
+    setResult(null);
   };
 
   const handlePercentage = () => {
-    const currentValue = parseFloat(display);
-    setDisplay(String(currentValue / 100));
+    try {
+      let calcExpression = expression
+        .replace(/−/g, "-")
+        .replace(/×/g, "*")
+        .replace(/÷/g, "/");
+
+      const evalResult = eval(calcExpression);
+      setExpression(String(evalResult / 100));
+      setResult(null);
+    } catch {
+      // Ignore errors
+    }
   };
 
   const handlePlusMinus = () => {
-    const currentValue = parseFloat(display);
-    setDisplay(String(-currentValue));
+    if (expression) {
+      try {
+        let calcExpression = expression
+          .replace(/−/g, "-")
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/");
+
+        const evalResult = eval(calcExpression);
+        setExpression(String(-evalResult));
+        setResult(null);
+      } catch {
+        // Ignore errors
+      }
+    }
   };
 
   return (
@@ -120,16 +112,23 @@ export default function Calculator() {
           {/* Calculator Card */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
             {/* Display Section */}
-            <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-6">
-              <div className="text-right space-y-2">
-                <div className="text-slate-400 text-sm h-6">
-                  {operation && previousValue !== null
-                    ? `${previousValue} ${operation}`
-                    : ""}
+            <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-8 min-h-40 flex flex-col justify-end">
+              <div className="space-y-4">
+                {/* Expression Display */}
+                <div className="text-right">
+                  <div className="text-slate-400 text-2xl font-light tracking-wide break-words min-h-10">
+                    {expression || "0"}
+                  </div>
                 </div>
-                <div className="text-white text-6xl font-light tracking-tight break-words">
-                  {display}
-                </div>
+
+                {/* Result Display (shown when equals is pressed) */}
+                {result !== null && (
+                  <div className="pt-4 border-t border-slate-700">
+                    <div className="text-right text-green-400 text-5xl font-bold tracking-tight">
+                      {result}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -247,7 +246,7 @@ export default function Calculator() {
                 </button>
               </div>
 
-              {/* Row 5: 0, +/-, ., = */}
+              {/* Row 5: 0, +/-, . */}
               <div className="grid grid-cols-4 gap-2">
                 <button
                   onClick={() => handleNumberClick("0")}
