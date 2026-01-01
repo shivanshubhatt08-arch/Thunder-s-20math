@@ -183,7 +183,7 @@ export default function UnitConverter() {
 
             {/* From Unit */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
+              <label className="block text-sm font-semibold text-blue-700 mb-3">
                 From
               </label>
               <Select value={fromUnit} onValueChange={setFromUnit}>
