@@ -202,7 +202,7 @@ export default function UnitConverter() {
 
             {/* To Unit */}
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-3">
+              <label className="block text-sm font-semibold text-blue-700 mb-3">
                 To
               </label>
               <Select value={toUnit} onValueChange={setToUnit}>
