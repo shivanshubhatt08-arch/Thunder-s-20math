@@ -294,9 +294,9 @@ export default function UnitConverter() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-4 border border-slate-200 hover:border-blue-300 transition-colors"
+                className="bg-white rounded-xl p-4 border border-blue-200 hover:border-blue-400 transition-colors"
               >
-                <div className="text-slate-600 text-sm">{item.label}</div>
+                <div className="text-blue-700 text-sm font-semibold">{item.label}</div>
                 <div className="text-xl font-bold text-blue-600 mt-1">
                   {item.value} {item.unit}
                 </div>
