@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Delete, RotatCcw } from "lucide-react";
+import { Delete } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Calculator() {
   const [expression, setExpression] = useState("");
   const [result, setResult] = useState<string | null>(null);
+  const [isScientific, setIsScientific] = useState(false);
+  const [angleMode, setAngleMode] = useState<"degree" | "radian">("degree");
 
   const handleNumberClick = (num: string) => {
     setExpression(expression + num);
@@ -24,12 +26,104 @@ export default function Calculator() {
     }
   };
 
+  const handlePi = () => {
+    setExpression(expression + Math.PI.toString());
+  };
+
+  const handleE = () => {
+    setExpression(expression + Math.E.toString());
+  };
+
+  const calculateSin = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value)) return;
+      const radians = angleMode === "degree" ? (value * Math.PI) / 180 : value;
+      const res = Math.sin(radians);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateCos = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value)) return;
+      const radians = angleMode === "degree" ? (value * Math.PI) / 180 : value;
+      const res = Math.cos(radians);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateTan = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value)) return;
+      const radians = angleMode === "degree" ? (value * Math.PI) / 180 : value;
+      const res = Math.tan(radians);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateSqrt = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value) || value < 0) return;
+      const res = Math.sqrt(value);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateLog = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value) || value <= 0) return;
+      const res = Math.log10(value);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateLn = () => {
+    try {
+      const value = parseFloat(expression);
+      if (isNaN(value) || value <= 0) return;
+      const res = Math.log(value);
+      setExpression(String(res.toFixed(6)));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculateFactorial = () => {
+    try {
+      const value = parseInt(expression);
+      if (isNaN(value) || value < 0) return;
+      let res = 1;
+      for (let i = 2; i <= value; i++) {
+        res *= i;
+      }
+      setExpression(String(res));
+      setResult(null);
+    } catch {}
+  };
+
+  const calculatePower = () => {
+    if (expression && !expression.endsWith(" ")) {
+      setExpression(expression + " ^ ");
+      setResult(null);
+    }
+  };
+
   const calculate = (): string => {
     try {
       let calcExpression = expression
         .replace(/−/g, "-")
         .replace(/×/g, "*")
-        .replace(/÷/g, "/");
+        .replace(/÷/g, "/")
+        .replace(/\^/g, "**");
 
       const evalResult = eval(calcExpression);
       return String(evalResult);
@@ -65,9 +159,7 @@ export default function Calculator() {
       const evalResult = eval(calcExpression);
       setExpression(String(evalResult / 100));
       setResult(null);
-    } catch {
-      // Ignore errors
-    }
+    } catch {}
   };
 
   const handlePlusMinus = () => {
@@ -81,9 +173,7 @@ export default function Calculator() {
         const evalResult = eval(calcExpression);
         setExpression(String(-evalResult));
         setResult(null);
-      } catch {
-        // Ignore errors
-      }
+      } catch {}
     }
   };
 
@@ -91,29 +181,47 @@ export default function Calculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
       <div className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link
             to="/"
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
           >
             ⚡ Thunder's Math
           </Link>
-          <Link
-            to="/"
-            className="text-sm px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
-          >
-            Home
-          </Link>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setIsScientific(!isScientific)}
+              className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                isScientific
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              {isScientific ? "Scientific" : "Basic"}
+            </button>
+            <Link
+              to="/"
+              className="text-sm px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors"
+            >
+              Home
+            </Link>
+          </div>
         </div>
       </div>
 
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)] p-4">
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-2xl">
           {/* Calculator Card */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
             {/* Display Section */}
             <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-8 min-h-40 flex flex-col justify-end">
               <div className="space-y-4">
+                {/* Mode Indicator */}
+                <div className="text-right text-slate-500 text-sm">
+                  {isScientific && angleMode === "degree" && "DEG"}
+                  {isScientific && angleMode === "radian" && "RAD"}
+                </div>
+
                 {/* Expression Display */}
                 <div className="text-right">
                   <div className="text-slate-400 text-2xl font-light tracking-wide break-words min-h-10">
@@ -121,7 +229,7 @@ export default function Calculator() {
                   </div>
                 </div>
 
-                {/* Result Display (shown when equals is pressed) */}
+                {/* Result Display */}
                 {result !== null && (
                   <div className="pt-4 border-t border-slate-700">
                     <div className="text-right text-green-400 text-5xl font-bold tracking-tight">
@@ -134,7 +242,7 @@ export default function Calculator() {
 
             {/* Button Grid */}
             <div className="p-6 space-y-3">
-              {/* Row 1: AC, DEL, %, ÷ */}
+              {/* Basic Mode Row 1: AC, DEL, %, ÷ */}
               <div className="grid grid-cols-4 gap-2">
                 <button
                   onClick={handleClear}
@@ -162,63 +270,157 @@ export default function Calculator() {
                 </button>
               </div>
 
-              {/* Row 2: 7, 8, 9, × */}
+              {/* Scientific Mode - Top Row */}
+              {isScientific && (
+                <div className="grid grid-cols-4 gap-2">
+                  <button
+                    onClick={calculateSin}
+                    className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                  >
+                    sin
+                  </button>
+                  <button
+                    onClick={calculateCos}
+                    className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                  >
+                    cos
+                  </button>
+                  <button
+                    onClick={calculateTan}
+                    className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                  >
+                    tan
+                  </button>
+                  <button
+                    onClick={() => setAngleMode(angleMode === "degree" ? "radian" : "degree")}
+                    className="bg-gradient-to-br from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                  >
+                    {angleMode === "degree" ? "RAD" : "DEG"}
+                  </button>
+                </div>
+              )}
+
+              {/* Basic Mode Row 2 / Scientific Row 3: 7, 8, 9, × */}
               <div className="grid grid-cols-4 gap-2">
-                <button
-                  onClick={() => handleNumberClick("7")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  7
-                </button>
-                <button
-                  onClick={() => handleNumberClick("8")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  8
-                </button>
-                <button
-                  onClick={() => handleNumberClick("9")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  9
-                </button>
-                <button
-                  onClick={() => handleOperation("×")}
-                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-                >
-                  ×
-                </button>
+                {isScientific && (
+                  <>
+                    <button
+                      onClick={calculateSqrt}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      √
+                    </button>
+                    <button
+                      onClick={calculateLog}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      log
+                    </button>
+                    <button
+                      onClick={calculateLn}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      ln
+                    </button>
+                    <button
+                      onClick={calculateFactorial}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      n!
+                    </button>
+                  </>
+                )}
+                {!isScientific && (
+                  <>
+                    <button
+                      onClick={() => handleNumberClick("7")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      7
+                    </button>
+                    <button
+                      onClick={() => handleNumberClick("8")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      8
+                    </button>
+                    <button
+                      onClick={() => handleNumberClick("9")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      9
+                    </button>
+                    <button
+                      onClick={() => handleOperation("×")}
+                      className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                    >
+                      ×
+                    </button>
+                  </>
+                )}
               </div>
 
-              {/* Row 3: 4, 5, 6, − */}
+              {/* Basic Mode Row 3 / Scientific Row 4: 4, 5, 6, − */}
               <div className="grid grid-cols-4 gap-2">
-                <button
-                  onClick={() => handleNumberClick("4")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  4
-                </button>
-                <button
-                  onClick={() => handleNumberClick("5")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  5
-                </button>
-                <button
-                  onClick={() => handleNumberClick("6")}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
-                >
-                  6
-                </button>
-                <button
-                  onClick={() => handleOperation("−")}
-                  className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
-                >
-                  −
-                </button>
+                {isScientific && (
+                  <>
+                    <button
+                      onClick={handlePi}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      π
+                    </button>
+                    <button
+                      onClick={handleE}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      e
+                    </button>
+                    <button
+                      onClick={calculatePower}
+                      className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg text-sm"
+                    >
+                      x^y
+                    </button>
+                    <button
+                      onClick={() => handleOperation("−")}
+                      className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                    >
+                      −
+                    </button>
+                  </>
+                )}
+                {!isScientific && (
+                  <>
+                    <button
+                      onClick={() => handleNumberClick("4")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      4
+                    </button>
+                    <button
+                      onClick={() => handleNumberClick("5")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      5
+                    </button>
+                    <button
+                      onClick={() => handleNumberClick("6")}
+                      className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-sm"
+                    >
+                      6
+                    </button>
+                    <button
+                      onClick={() => handleOperation("−")}
+                      className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
+                    >
+                      −
+                    </button>
+                  </>
+                )}
               </div>
 
-              {/* Row 4: 1, 2, 3, + */}
+              {/* Basic Mode Row 4 / Scientific Row 5: 1, 2, 3, + */}
               <div className="grid grid-cols-4 gap-2">
                 <button
                   onClick={() => handleNumberClick("1")}
@@ -246,7 +448,7 @@ export default function Calculator() {
                 </button>
               </div>
 
-              {/* Row 5: 0, +/-, . */}
+              {/* Basic Mode Row 5 / Scientific Row 6: 0, +/-, . */}
               <div className="grid grid-cols-4 gap-2">
                 <button
                   onClick={() => handleNumberClick("0")}
@@ -268,7 +470,7 @@ export default function Calculator() {
                 </button>
               </div>
 
-              {/* Row 6: = Button (Full Width) */}
+              {/* Basic Mode Row 6 / Scientific Row 7: = Button (Full Width) */}
               <button
                 onClick={handleEquals}
                 className="w-full bg-gradient-to-br from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold text-2xl py-5 rounded-lg transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg"
@@ -277,6 +479,31 @@ export default function Calculator() {
               </button>
             </div>
           </div>
+
+          {/* Info Box */}
+          {isScientific && (
+            <div className="mt-6 bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
+              <h3 className="text-lg font-bold text-blue-600 mb-3">Scientific Functions</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-blue-700 font-semibold">Trigonometric</p>
+                  <p className="text-slate-600">sin, cos, tan (Deg/Rad)</p>
+                </div>
+                <div>
+                  <p className="text-blue-700 font-semibold">Logarithmic</p>
+                  <p className="text-slate-600">log (base 10), ln (natural)</p>
+                </div>
+                <div>
+                  <p className="text-blue-700 font-semibold">Power & Root</p>
+                  <p className="text-slate-600">x^y, √x, n!</p>
+                </div>
+                <div>
+                  <p className="text-blue-700 font-semibold">Constants</p>
+                  <p className="text-slate-600">π, e</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
