@@ -197,13 +197,22 @@ export default function Home() {
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Experience the simplicity and power of Thunder's Math. Perfect for students, professionals, and everyone in between.
           </p>
-          <Link
-            to="/calculator"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-blue-600 font-bold text-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-          >
-            Open Calculator
-            <ArrowRight size={20} />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/calculator"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-blue-600 font-bold text-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            >
+              Standard Calculator
+              <ArrowRight size={20} />
+            </Link>
+            <Link
+              to="/programmer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-slate-800 text-white font-bold text-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            >
+              Programming Calc
+              <Code2 size={20} />
+            </Link>
+          </div>
         </div>
       </section>
 
