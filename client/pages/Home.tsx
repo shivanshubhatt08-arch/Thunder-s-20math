@@ -216,6 +216,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Credits Section */}
+      <section className="py-16 bg-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-blue-300 mb-4">Credits</h2>
+            <p className="text-blue-200">Built with passion by an amazing team</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="p-8 rounded-2xl bg-slate-700 border border-slate-600">
+              <h3 className="text-2xl font-bold text-blue-300 mb-4 flex items-center gap-2">
+                <Code2 size={24} />
+                Developer
+              </h3>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-blue-200 font-semibold">Lightning Thunder</p>
+                  <p className="text-slate-400 text-sm">Full-stack Development</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-slate-700 border border-slate-600">
+              <h3 className="text-2xl font-bold text-blue-300 mb-4 flex items-center gap-2">
+                <Zap size={24} />
+                Designer
+              </h3>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-blue-200 font-semibold">Lightning Thunder</p>
+                  <p className="text-slate-400 text-sm">UI/UX Design</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 p-8 rounded-2xl bg-gradient-to-r from-blue-900 to-slate-800 border border-blue-700 text-center">
+            <p className="text-blue-200 text-lg mb-2">
+              <span className="font-semibold">Special Thanks</span> to <span className="text-blue-300 font-bold">Lightning Thunder</span>
+            </p>
+            <p className="text-slate-300">
+              For creating Thunder's Math - a powerful, beautiful, and user-friendly calculator application.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-slate-900 text-blue-300 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
