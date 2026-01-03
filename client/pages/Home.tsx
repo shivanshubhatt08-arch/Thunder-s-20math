@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calculator, Zap, Gauge, BarChart3, ArrowRight } from "lucide-react";
+import { Calculator, Zap, Gauge, BarChart3, ArrowRight, Code2 } from "lucide-react";
 
 export default function Home() {
   const features = [
