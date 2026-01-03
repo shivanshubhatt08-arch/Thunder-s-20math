@@ -46,12 +46,20 @@ export default function Home() {
             </div>
             <span className="font-bold text-xl text-blue-600">Thunder's Math</span>
           </div>
-            <Link
-              to="/calculator"
-              className="px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg transition-all duration-200"
-            >
-              Open Calculator
-            </Link>
+            <div className="flex gap-2">
+              <Link
+                to="/calculator"
+                className="px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg transition-all duration-200"
+              >
+                Open Calculator
+              </Link>
+              <Link
+                to="/programmer"
+                className="px-6 py-2 rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 text-white font-semibold hover:shadow-lg transition-all duration-200"
+              >
+                Programmer
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
