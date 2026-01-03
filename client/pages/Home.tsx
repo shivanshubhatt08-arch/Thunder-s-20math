@@ -103,8 +103,15 @@ export default function Home() {
                 to="/calculator"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-xl transition-all duration-200 hover:scale-105"
               >
-                Get Started
+                Standard Calculator
                 <ArrowRight size={20} />
+              </Link>
+              <Link
+                to="/programmer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-slate-700 to-slate-900 text-white font-semibold hover:shadow-xl transition-all duration-200 hover:scale-105"
+              >
+                Programming Calc
+                <Code2 size={20} />
               </Link>
               <button className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-slate-300 text-slate-900 font-semibold hover:bg-slate-50 transition-all duration-200">
                 Learn More
