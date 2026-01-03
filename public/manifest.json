@@ -1,0 +1,68 @@
+{
+  "name": "Thunder's Math - Calculator App",
+  "short_name": "Thunder's Math",
+  "description": "A powerful, multifunctional calculator with standard, scientific, and programming modes. Convert units instantly.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232563eb' width='192' height='192'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='120' font-weight='bold' fill='white' font-family='system-ui'>⚡</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%232563eb' width='512' height='512'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='300' font-weight='bold' fill='white' font-family='system-ui'>⚡</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f1f5f9' width='540' height='720'/><rect fill='%232563eb' width='540' height='60'/><text x='270' y='30' dominant-baseline='middle' text-anchor='middle' font-size='24' font-weight='bold' fill='white'>Thunder's Math</text><rect fill='white' x='20' y='100' width='500' height='500' rx='20'/><text x='270' y='350' dominant-baseline='middle' text-anchor='middle' font-size='48' font-weight='bold' fill='%232563eb'>⚡</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 540'><rect fill='%23f1f5f9' width='960' height='540'/><rect fill='%232563eb' width='960' height='60'/><text x='480' y='30' dominant-baseline='middle' text-anchor='middle' font-size='24' font-weight='bold' fill='white'>Thunder's Math</text><rect fill='white' x='20' y='100' width='920' height='400' rx='20'/><text x='480' y='300' dominant-baseline='middle' text-anchor='middle' font-size='64' font-weight='bold' fill='%232563eb'>⚡</text></svg>",
+      "sizes": "960x540",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Standard Calculator",
+      "short_name": "Calculator",
+      "description": "Open the standard calculator with scientific functions",
+      "url": "/calculator",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234f46e5' width='192' height='192'/><text x='96' y='96' dominant-baseline='middle' text-anchor='middle' font-size='100' font-weight='bold' fill='white'>∑</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Programming Calculator",
+      "short_name": "Programmer",
+      "description": "Open the programming calculator with binary, hex, and bitwise operations",
+      "url": "/programmer",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%238b5cf6' width='192' height='192'/><text x='96' y='96' dominant-baseline='middle' text-anchor='middle' font-size='100' font-weight='bold' fill='white'>&lt;/&gt;</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
