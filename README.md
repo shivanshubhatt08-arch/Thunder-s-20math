@@ -42,3 +42,10 @@ This project is designed for students, developers, and everyday users who requir
 ---
 
 ## 📂 Project Structure
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/multifunctional-calculator.git
